@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/registerForm.css">
+    <title>Register</title>
+</head>
+
+<body>
+    <div id="formDiv">
+        <center><h1>REGISTRATION FORM</h1></center>
+        <form action="/register" method="POST" id="formData">
+            <label for="name">NAME:</label><br>
+            <input type="text" name="name" id="name" placeholder="Enter your name"><br>
+            <label for="email">EMAIL:</label><br>
+            <input type="email" name="email" id="email" placeholder="Enter your email"><br>
+            <label for="password">PASSWORD:</label><br>
+            <input type="password" name="password" id="password" placeholder="Enter your password"><br>
+            <label for="password1">CONFIRM PASSWORD:</label><br>
+            <input type="password" name="password1" id="password1" placeholder="Re-type password"><br>
+            <input type="submit" id="registerButton" value="REGISTER"><br>
+            <input type="button" id="clearButton" value="CLEAR">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("clearButton").onclick = function(){
+            window.location.reload(true)
+        }
+    </script>
+</body>
+
+</html>
