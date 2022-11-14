@@ -23,7 +23,11 @@ const registerCheck = [check('username', 'Name field cannot be empty').notEmpty(
   check('email', 'Email is not valid').isEmail(),
   check('dob', 'Date of birth cannot be empty').notEmpty(),
   check('password', 'Password cannot be empty').notEmpty(),
-  check('password1', 'Passwords are not matching').notEmpty()
+  check('password1').custom((value, { req })=>{
+    if(value != req.body.password)
+      throw new Error ("Confirm Password do not match password");
+    return true;
+  })
 ]
 
 router.post('/', urlencoded, registerCheck, function (req, res) {
