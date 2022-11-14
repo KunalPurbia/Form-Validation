@@ -18,10 +18,16 @@ const loginCheck = [  check('email', 'Email is not valid').isEmail(),
                       check('password', 'Password cannot be empty').notEmpty()]
 
 router.post('/', urlencoded, loginCheck, function(req, res){
-  const errors = validationResult(req);
-  console.log(errors);
-  console.log(req.body);
-  res.redirect('/profile')
+  let errorData = validationResult(req);
+  let errorArray = errorData.errors;
+  if (errorArray.length === 0) {
+    res.redirect('/profile')
+  } else {
+    const errorInput = errorArray[0].param;
+    const errorMessage = errorArray[0].msg;
+
+    res.render('login', {errorInput:errorInput, message:errorMessage});
+  }
 })
 
 module.exports = router;
