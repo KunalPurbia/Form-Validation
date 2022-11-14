@@ -13,22 +13,37 @@ head
     br
     input#name(type='text' name='username' placeholder='Enter your name')
     br
+    if errorInput === "username"
+        p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+    endif
     label(for='email') EMAIL:
     br
     input#email(type='text' name='email' placeholder='Enter your email')
     br
+    if errorInput === "email"
+        p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message}
+    endif
     label(for='dob') DATE OF BIRTH:
     br
     input#dob(type='date' name='dob')
     br
+    if errorInput === "dob"
+        p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+    endif
     label(for='password') PASSWORD:
     br
     input#password(type='password' name='password' placeholder='Enter your password')
     br
+    if errorInput === "password"
+        p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+    endif
     label(for='password1') CONFIRM PASSWORD:
     br
     input#password1(type='password' name='password1' placeholder='Re-type password')
     br
+    if errorInput === "password1"
+        p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+    endif
     input#registerButton(type='submit' value='REGISTER')
     br
     input#clearButton(type='button' value='CLEAR')
