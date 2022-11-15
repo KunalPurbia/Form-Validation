@@ -15,6 +15,7 @@ head
         strong Below is your full profile details
   #formData
     form(action='/profile/update' method='POST')
+        h1(style={"color":"darkgreen"}) #{updateMessage}
         label(for='username') NAME:
         br
         input#name(type='text' name='username' placeholder='Enter your name' value=user.username)
