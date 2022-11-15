@@ -4,7 +4,9 @@ const {
   validationResult
 } = require('express-validator');
 var router = express.Router();
-var path = require("path");
+require('dotenv').config()
+
+const mongoose = require('mongoose');
 
 const app = express();
 app.use(express.json());
@@ -12,7 +14,17 @@ urlencoded = express.urlencoded({
   extended: false
 });
 
-var publicDir = path.join(__dirname, '..', 'public')
+mongoose.connect(process.env.MONGO_URL);
+
+const userSchema = mongoose.Schema({
+  username: String,
+  email: String,
+  password: String,
+  dob: String,
+  age: Number
+});
+
+const User = new mongoose.model("user", userSchema);
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -38,7 +50,20 @@ router.post('/', urlencoded, registerCheck, function (req, res) {
     const year = dob.slice(0, 4);
     const currentYear = new Date().getFullYear();
     const age = currentYear - year;
-    res.redirect('/login');
+    
+    const userDetail = {};
+    userDetail.username = req.body.username;
+    userDetail.email = req.body.email;
+    userDetail.dob = req.body.dob;
+    userDetail.age = age;
+    userDetail.password = req.body.password;
+    
+    const newUser = new User(userDetail);
+
+    newUser.save((err)=>{
+      if(err) throw err
+      res.redirect('/login');
+    })
   } else {
     const errorInput = errorArray[0].param;
     const errorMessage = errorArray[0].msg;
