@@ -27,7 +27,7 @@ router.post('/', urlencoded, loginCheck, function(req, res){
       if(err){throw err}
       else{
         if(foundUser){
-          res.send(foundUser)
+          res.render('profile', {user: foundUser})
         } else{
           res.send("Account not found");
         }
