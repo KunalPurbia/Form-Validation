@@ -9,12 +9,12 @@ head
   center
     h1
       | Hello, 
-      u userName
+      u #{user.username}
     p
       em
         strong Below is your full profile details
   #formData
-    form(action='/update' method='POST')
+    form(action='/profile/update' method='POST')
         label(for='username') NAME:
         br
         input#name(type='text' name='username' placeholder='Enter your name' value=user.username)
@@ -41,5 +41,5 @@ head
         br
         input#updateButton(type='submit' value='UPDATE')
         br
-    form(action="/delete", method="POST")
+    form(action="/profile/delete", method="POST")
         input#deleteButton(type='submit' value='DELETE') 
