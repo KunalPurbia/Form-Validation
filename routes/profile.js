@@ -41,7 +41,6 @@ router.post('/', urlencoded, loginCheck, function(req, res){
 
 router.post('/update', function (req, res) {
   const userEmail = req.cookies.user_email;
-  const updatedUser = req.body;
   const findEmail = {
     email: userEmail
   };
@@ -55,12 +54,22 @@ router.post('/update', function (req, res) {
 
   User.updateOne(findEmail, newData, function(err, result){
     if(err) throw err;
+    res.cookie("user_email", newData.email)
     res.render('profile', {updateMessage:"Profile updated successfully!", user:newData})
   })
 })
 
 router.post('/delete', function (req, res) {
-  res.send("Delete");
+  const userEmail = req.cookies.user_email;
+  const findEmail = {
+    email: userEmail
+  };
+
+  User.deleteOne(findEmail, function(err, result){
+    if(err) throw err;
+    res.clearCookie("user_email")
+    res.send("<center><h1>Profile deleted successfully!</h1><button><a href='/'>HOME</a></button></center>")
+  })
 })
 
 module.exports = router;
