@@ -4,9 +4,6 @@ const {
   validationResult
 } = require('express-validator');
 var router = express.Router();
-require('dotenv').config()
-
-const mongoose = require('mongoose');
 
 const app = express();
 app.use(express.json());
@@ -14,7 +11,7 @@ urlencoded = express.urlencoded({
   extended: false
 });
 
-mongoose.connect(process.env.MONGO_URL);
+const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
   username: String,
