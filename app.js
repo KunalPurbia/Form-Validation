@@ -1,4 +1,3 @@
-require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -11,7 +10,7 @@ var loginRouter = require('./routes/login');
 var profileRouter = require('./routes/profile');
 
 const mongoose = require('mongoose');
-const connection = mongoose.connect(process.env.MONGO_URL);
+mongoose.connect("mongodb+srv://userDatabase:userDB1234@userdb.zcp1v8z.mongodb.net/Users?retryWrites=true&w=majority");
 
 var app = express();
 
