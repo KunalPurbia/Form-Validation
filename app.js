@@ -10,7 +10,7 @@ var loginRouter = require('./routes/login');
 var profileRouter = require('./routes/profile');
 
 const mongoose = require('mongoose');
-mongoose.connect("mongodb+srv://userDatabase:userDB1234@userdb.zcp1v8z.mongodb.net/Users?retryWrites=true&w=majority");
+mongoose.connect(process.env.MONGO_URL);
 
 var app = express();
 
