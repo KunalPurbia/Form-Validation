@@ -2,9 +2,11 @@ var express = require('express');
 const { check, validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 var router = express.Router();
+var cookieParser = require('cookie-parser');
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 urlencoded = express.urlencoded({ extended: false });
 
 /* GET home page. */
@@ -27,6 +29,7 @@ router.post('/', urlencoded, loginCheck, function(req, res){
       if(err){throw err}
       else{
         if(foundUser){
+          res.cookie("user_email", foundUser.email)
           res.render('profile', {user: foundUser})
         } else{
           res.send("Account not found");
