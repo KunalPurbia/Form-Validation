@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -7,7 +8,10 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var registerRouter = require('./routes/register');
 var loginRouter = require('./routes/login');
-var profileRouter = require('./routes/profile')
+var profileRouter = require('./routes/profile');
+
+const mongoose = require('mongoose');
+const connection = mongoose.connect(process.env.MONGO_URL);
 
 var app = express();
 
